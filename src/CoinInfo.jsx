@@ -1,12 +1,12 @@
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 
-function CoinInfo() {
+function CoinInfo({ coinData }) {
   return (
     <Row>
       <Col>
         <Row>
-          <Col>Logo</Col>;<Col>Bitcoin</Col>
+          <Col>Logo</Col>;<Col>{coinData.name}</Col>
         </Row>
       </Col>
       <Col>
