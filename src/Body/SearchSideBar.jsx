@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button";
 
 function SearchSideBar({ showSideBar, setShowSideBar }) {
   const handleClose = () => setShowSideBar(false);
-  const closeButton = () => setShowSideBar(false);
 
   return (
     <Offcanvas show={showSideBar} onHide={handleClose} placement="end">
@@ -42,7 +41,7 @@ function SearchSideBar({ showSideBar, setShowSideBar }) {
           </InputGroup>
         </Form>
         <Navbar.Text className="justify-content-end">
-          <Button onClick={() => setShowSideBar(true)} variant="primary">
+          <Button onClick={() => setShowSideBar(false)} variant="primary">
             Search
           </Button>
         </Navbar.Text>
