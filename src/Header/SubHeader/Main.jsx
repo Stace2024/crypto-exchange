@@ -6,8 +6,9 @@ function Main({ data }) {
   return (
     <Container>
       <Row>
-        {data.map(({ children }) => ( 
-        <Col>{children}</Col>) )}
+        {data.map(({ children }) => (
+          <Col>{children}</Col>
+        ))}
       </Row>
     </Container>
   );

@@ -40,7 +40,12 @@ function CoinList({ setPage }) {
           </tr>
         </tbody>
       </Table>
-      <CoinInfoModal show={showInfoModal} setShow={setShowInfoModal} coinData={coinData} setPage={setPage} />
+      <CoinInfoModal
+        show={showInfoModal}
+        setShow={setShowInfoModal}
+        coinData={coinData}
+        setPage={setPage}
+      />
     </>
   );
 }
