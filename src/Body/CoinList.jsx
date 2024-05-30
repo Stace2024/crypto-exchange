@@ -1,8 +1,8 @@
 import Table from "react-bootstrap/Table";
 import React from "react";
-import CoinInfoModal from "./CoinInfoModal";
+import CoinInfoModal from "./CoinInfo/CoinInfoModal";
 
-function CoinList() {
+function CoinList({ setPage }) {
   const [showInfoModal, setShowInfoModal] = React.useState(false);
 
   const [coinData, setCoinData] = React.useState({});
@@ -40,7 +40,7 @@ function CoinList() {
           </tr>
         </tbody>
       </Table>
-      <CoinInfoModal show={showInfoModal} setShow={setShowInfoModal} coinData={coinData} />
+      <CoinInfoModal show={showInfoModal} setShow={setShowInfoModal} coinData={coinData} setPage={setPage} />
     </>
   );
 }
