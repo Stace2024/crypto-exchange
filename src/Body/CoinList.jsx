@@ -1,16 +1,24 @@
 import Table from "react-bootstrap/Table";
 import React from "react";
 import CoinInfoModal from "./CoinInfo/CoinInfoModal";
+import { getAssets } from "../api/assets";
 
 function CoinList({ setPage }) {
   const [showInfoModal, setShowInfoModal] = React.useState(false);
 
   const [coinData, setCoinData] = React.useState({});
+  const [coinList, setCoinList] = React.useState([]);
 
   const handleonClick = (name) => {
     setShowInfoModal(true);
     setCoinData({ name });
   };
+
+  React.useEffect(() => {
+    getAssets().then((json) => {
+      setCoinList(json.data);
+    });
+  }, []);
 
   return (
     <>
@@ -28,16 +36,19 @@ function CoinList({ setPage }) {
           </tr>
         </thead>
         <tbody>
-          <tr onClick={() => handleonClick("Bitcoin")}>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-          </tr>
+          {coinList.length &&
+            coinList.map((coin) => (
+              <tr onClick={() => handleonClick("Bitcoin")}>
+                <td>{coin.rank}</td>
+                <td>{coin.name}</td>
+                <td>{coin.priceUsd}</td>
+                <td>{coin.marketCapUsd}</td>
+                <td>{coin.vwap24Hr}</td>
+                <td>{coin.supply}</td>
+                <td>{coin.volumeUsd24Hr}</td>
+                <td>{coin.changePercent24Hr}</td>
+              </tr>
+            ))}
         </tbody>
       </Table>
       <CoinInfoModal
