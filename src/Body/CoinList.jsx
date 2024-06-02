@@ -9,9 +9,9 @@ function CoinList({ setPage }) {
   const [coinData, setCoinData] = React.useState({});
   const [coinList, setCoinList] = React.useState([]);
 
-  const handleonClick = (name) => {
+  const handleonClick = (coin) => {
     setShowInfoModal(true);
-    setCoinData({ name });
+    setCoinData(coin);
   };
 
   React.useEffect(() => {
@@ -38,7 +38,7 @@ function CoinList({ setPage }) {
         <tbody>
           {coinList.length &&
             coinList.map((coin) => (
-              <tr onClick={() => handleonClick("Bitcoin")}>
+              <tr onClick={() => handleonClick("coin")}>
                 <td>{coin.rank}</td>
                 <td>{coin.name}</td>
                 <td>{coin.priceUsd}</td>

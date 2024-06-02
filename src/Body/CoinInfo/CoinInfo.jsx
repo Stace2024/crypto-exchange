@@ -22,7 +22,7 @@ function CoinInfo({ coinData }) {
       </Row>
 
       <Row>
-        <Chart />
+        <Chart coinData={coinData} />
       </Row>
     </>
   );
