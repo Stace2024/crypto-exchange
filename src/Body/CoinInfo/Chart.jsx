@@ -9,6 +9,7 @@ import {
 } from "recharts";
 import React from "react";
 import { getAssetsHistory } from "../../api/assets";
+import { intervals } from "./constants";
 const data = [
   {
     name: "Page A",
@@ -54,9 +55,11 @@ const data = [
   },
 ];
 function Chart({ coinData }) {
+  const [interval] = React.useState(intervals[0]);
   React.useEffect(() => {
-    getAssetsHistory(coinData.id).then((json) => console.log(json));
-  }, []);
+    getAssetsHistory(coinData.id, interval).then((json) => console.log(json));
+  }, [coinData.id, interval]);
+
   return (
     <ResponsiveContainer width="100%" height={500}>
       <AreaChart

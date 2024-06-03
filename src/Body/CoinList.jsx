@@ -38,7 +38,7 @@ function CoinList({ setPage }) {
         <tbody>
           {coinList.length &&
             coinList.map((coin) => (
-              <tr onClick={() => handleonClick("coin")}>
+              <tr key={coin.id} onClick={() => handleonClick("coin")}>
                 <td>{coin.rank}</td>
                 <td>{coin.name}</td>
                 <td>{coin.priceUsd}</td>
