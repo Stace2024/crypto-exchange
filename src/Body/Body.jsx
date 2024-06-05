@@ -10,7 +10,6 @@ function Body(props) {
       ) : (
         <CoinInfo coinData={{ name: "TestCoin" }} />
       )}
-
       <SearchSideBar {...props} />
     </>
   );

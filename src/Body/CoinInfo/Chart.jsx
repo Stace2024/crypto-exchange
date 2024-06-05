@@ -1,56 +1,46 @@
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import React from "react";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+import { getAssetsHistory } from "../../api/assets";
+import { periods } from "./constants";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { buildPeriod, parseTime } from "./utils";
+import ErrorModal from "../../ErrorModal";
 
-const data = [
-    {
-      name: 'Page A',
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
-    },
-    {
-      name: 'Page B',
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: 'Page C',
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: 'Page D',
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: 'Page E',
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: 'Page F',
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: 'Page G',
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
-function Chart() {
-    return (
-        <ResponsiveContainer width="100%" height={500}>
+function Chart({ coinData }) {
+  const [period, setPeriod] = React.useState(periods[0]);
+  const [chartData, setChartData] = React.useState([]);
+  const [errorMessage, setErrorMessage] = React.useState(null);
+
+  React.useEffect(() => {
+    const { start, end } = buildPeriod(period);
+    getAssetsHistory(coinData.id, period.interval, start, end)
+      .then((json) =>
+        setChartData(
+          json.data.map(({ time, ...rest }) => ({
+            ...rest,
+            date: parseTime(time, period.dateFormat),
+          }))
+        )
+      )
+      .catch((error) => setErrorMessage(error.message));
+  }, [coinData.id, period]);
+
+  return (
+    <>
+      <ResponsiveContainer width="100%" height={500}>
         <AreaChart
           width={500}
-          height={400}
-          data={data}
+          height={500}
+          data={chartData}
           margin={{
             top: 10,
             right: 30,
@@ -59,13 +49,36 @@ function Chart() {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <XAxis dataKey="date" />
+          <YAxis domain={["dataMin", "dataMax"]} />
           <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+          <Area
+            type="monotone"
+            dataKey="priceUsd"
+            stroke="#8884d8"
+            fill="#8884d8"
+          />
         </AreaChart>
       </ResponsiveContainer>
-    );
-  }
+      <ButtonGroup size="sm">
+        {periods.map((_period) => (
+          <Button
+            onClick={() => setPeriod(_period)}
+            key={_period.label}
+            variant="outline-primary"
+            active={_period.label === period.label}
+          >
+            {_period.label}
+          </Button>
+        ))}
+      </ButtonGroup>
+      <ErrorModal
+        show={!!errorMessage}
+        handleClose={() => setErrorMessage(null)}
+        errorMessage={errorMessage}
+      />
+    </>
+  );
+}
 
-  export default Chart;
+export default Chart;

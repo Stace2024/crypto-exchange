@@ -1,6 +1,6 @@
 import Modal from "react-bootstrap/Modal";
-import CoinInfo from "./CoinInfo";
 import Button from "react-bootstrap/Button";
+import CoinInfo from "./CoinInfo";
 
 function CoinInfoModal({ show, setShow, coinData, setPage }) {
   const handleOnClick = () => {

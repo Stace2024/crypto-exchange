@@ -1,41 +1,38 @@
-
-
 export const mainSubHeader = [
-    {
-        Children: 'MARKET CAP'
-    },
-    {
-        Children: 'EXCHANGE VOL'
-    },
-    {
-        Children: 'ASSETS'
-    },
-    {
-        Children: 'EXCHANGES'
-    },
-    {
-        Children: 'MARKETS'
-    },
-    {
-        Children: 'BTC DOM INDEX'
-    },
+  {
+    children: "MARKET CAP $2.49T",
+  },
+  {
+    children: "EXCHANGE VOL $57.92B",
+  },
+  {
+    children: "ASSETS 2,297",
+  },
+  {
+    children: "EXCHANGES 73",
+  },
+  {
+    children: "MARKETS 9,065",
+  },
+  {
+    children: "BTC DOM INDEX 53.9%",
+  },
 ];
 
-
 export const pageSubHeader = [
-    {
-        Children: 'Rank 1'
-    },
-    {
-        Children: 'Bitcoin'
-    },
-    {
-        Children: 'Market Cap'
-    },
-    {
-        Children: 'Volume'
-    },
-    {
-        Children: 'Supply'
-    },
+  {
+    children: "Rank 1",
+  },
+  {
+    children: "Bitcoin",
+  },
+  {
+    children: "Market cap",
+  },
+  {
+    children: "Volume",
+  },
+  {
+    children: "Supply",
+  },
 ];
