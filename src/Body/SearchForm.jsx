@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { periods } from "./CoinInfo/constants";
 
 function SearchForm({ closeSideBar }) {
   const [searchData, setSearchData] = React.useState({});
@@ -27,14 +28,14 @@ function SearchForm({ closeSideBar }) {
         <Form.Text className="text-muted">Example "BTC"</Form.Text>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="from">
-        <Form.Label>From</Form.Label>
-        <Form.Control type="date" name="from" placeholder="Date from" />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="to">
-        <Form.Label>To</Form.Label>
-        <Form.Control type="date" name="to" placeholder="Date to" />
+      <Form.Group className="mb-3" controlId="interval">
+        <Form.Label>Interval</Form.Label>
+        {periods.map((period) => (
+          <option key={period.interval} value={period.ninterval}>
+            {period.label}
+          </option>
+        ))}
+        <Form.Select name="interval"></Form.Select>
       </Form.Group>
 
       <Button variant="primary" type="submit" className="w-100">

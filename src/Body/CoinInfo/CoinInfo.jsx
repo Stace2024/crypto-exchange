@@ -5,16 +5,19 @@ import Chart from "./Chart";
 import { getAssetsById } from "../../api/assets";
 import "./coinInfo.css";
 import ErrorModal from "../../ErrorModal";
+import { useParams } from "react-router-dom";
 
 function CoinInfo({ coinData }) {
   const [coinInfo, setCoinInfo] = React.useState({});
   const [errorMessage, setErrorMessage] = React.useState(null);
 
+  const { id } = useParams();
+
   React.useEffect(() => {
-    getAssetsById(coinData.id)
+    getAssetsById(coinData?.id || id)
       .then((json) => setCoinInfo(json.data))
       .catch((error) => setErrorMessage(error.message));
-  }, [coinData.id]);
+  }, [coinData?.id, id]);
 
   return (
     <>
@@ -25,7 +28,7 @@ function CoinInfo({ coinData }) {
         <Col>
           <Row>
             <Col>Logo</Col>
-            <Col>{coinData.name}</Col>
+            <Col>{coinData?.name}</Col>
           </Row>
         </Col>
         <Col>
@@ -38,7 +41,7 @@ function CoinInfo({ coinData }) {
         </Col>
       </Row>
       <Row>
-        <Chart coinData={coinData} />
+        <Chart coinData={coinData || { id }} />
       </Row>
       <ErrorModal
         show={!!errorMessage}
