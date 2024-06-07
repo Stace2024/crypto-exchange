@@ -14,6 +14,8 @@ import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { buildPeriod, parseTime } from "./utils";
 import ErrorModal from "../../ErrorModal";
+ 
+
 
 function Chart({ coinData }) {
   const [period, setPeriod] = React.useState(periods[0]);
