@@ -9,10 +9,8 @@ function App() {
 
   return (
     <Container>
-     
       <Header setShowSideBar={setShowSideBar} />
       <Body showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
-      
     </Container>
   );
 }

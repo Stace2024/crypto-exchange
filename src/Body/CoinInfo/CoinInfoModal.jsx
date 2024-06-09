@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function CoinInfoModal({ show, setShow, coinData }) {
   const navigate = useNavigate();
+
   const handleOnClick = () => {
     setShow(false);
     navigate("/coin/" + coinData.id);
