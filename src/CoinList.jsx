@@ -23,13 +23,13 @@ function CoinList() {
         <tbody>
           <tr onClick={() => setShowInfoModal(true)}>
             <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
+            <td>BTCUSDT</td>
+            <td>$67,640.50</td>
+            <td>@$1.33t</td>
+            <td>@$68,593.59</td>
+            <td>@19.70m</td>
+            <td>@12.98b</td>
+            <td>@-2.10%</td>
           </tr>
         </tbody>
       </Table>
