@@ -1,4 +1,6 @@
 import { createAction, createReducer, configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from "@reduxjs/toolkit";
+import foundCoinsReducer from "./foundCoinsSlice";
 
 const initialState = {
   showSideBar: false,
@@ -23,7 +25,11 @@ const appReducer = createReducer(initialState, (builder) => {
       state.coinData = action.payload;
     });
 });
+const rootReducer = combineReducers({
+  foundCoins: foundCoinsReducer,
+});
 
+export default rootReducer;
 export const store = configureStore({
   reducer: appReducer,
 });
